@@ -1,0 +1,60 @@
+name: CI/CD Cloud Run
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Instalar dependencias
+        run: pip install -r app/requirements.txt
+
+      - name: Comprobar que la app funciona
+        run: |
+          cd app
+          python -c "from main import app"
+
+  build-and-deploy:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Autenticarse en GCP
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
+
+      - name: Configurar gcloud
+        uses: google-github-actions/setup-gcloud@v2
+
+      - name: Configurar Docker para Artifact Registry
+        run: gcloud auth configure-docker europe-southwest1-docker.pkg.dev
+
+      - name: Construir imagen
+        run: |
+          docker build -t europe-southwest1-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/ci-cd-repo/api-basica:${{ github.sha }} ./app
+
+      - name: Subir imagen
+        run: |
+          docker push europe-southwest1-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/ci-cd-repo/api-basica:${{ github.sha }}
+
+      - name: Desplegar en Cloud Run
+        run: |
+          gcloud run deploy api-basica \
+            --image europe-southwest1-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/ci-cd-repo/api-basica:${{ github.sha }} \
+            --region europe-southwest1 \
+            --project ${{ secrets.GCP_PROJECT_ID }}
+
+      - name: Comprobar que el servicio responde (health check)
+        run: |
+          URL=$(gcloud run services describe api-basica --region=europe-southwest1 --project=${{ secrets.GCP_PROJECT_ID }} --format="value(status.url)")
+          curl --fail "$URL/health" || exit 1
