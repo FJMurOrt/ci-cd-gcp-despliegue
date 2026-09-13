@@ -83,6 +83,6 @@ ci-cd-gcp-despliegue/
 - Artifact Registry
 - FastAPI (para el desarrollo de la api)
 
-## 💰 Sobre el coste
+## 💰 ¿Cuánto ha costado?
 
 Todo esto lo hice dentro del nivel gratuito de Google Cloud. Cloud Run no genera ningún coste, sólo si recibe mucho tráfico. Antes de empezar, puse una alerta de presupuesto de 1€ por si algo se salía de lo que tenía pensado. El gasto real y total fue de 0€.
