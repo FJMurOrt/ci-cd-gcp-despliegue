@@ -57,4 +57,4 @@ jobs:
       - name: Comprobar que el servicio responde (health check)
         run: |
           URL=$(gcloud run services describe api-basica --region=europe-southwest1 --project=${{ secrets.GCP_PROJECT_ID }} --format="value(status.url)")
-          curl --fail "$URL/health" || exit 1
+          curl --fail "$URL/estado" || exit 1
