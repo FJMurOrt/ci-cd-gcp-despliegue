@@ -1,6 +1,6 @@
 # CI/CD para despliegue en GCP (Cloud Run, Artifact Registry, Terraform, FastAPI y GitHub Actions)
 
-Este proyecto es un pipeline completo de CI/CD que despliega automáticamente una aplicación en Google Cloud, desde el push a GitHub hasta que funciona en producción, con una URL pública real.
+Este proyecto es un pipeline completo de CI/CD que despliega automáticamente una aplicación en Google Cloud, desde el push a GitHub hasta que funciona en producción, con una URL pública.
 
 ## Lo importante: la API es solo la excusa
 
