@@ -31,7 +31,18 @@ Todo lo que hay en la nube lo crea Terraform:
 
 ## 📸 Capturas
 
+## 📸 Capturas
 
+![1](capturas/1.png)
+![2](capturas/2.png)
+![3](capturas/3.png)
+![4](capturas/4.png)
+![5](capturas/5.png)
+![6](capturas/6.png)
+![7](capturas/7.png)
+![8](capturas/8.png)
+![9](capturas/9.png)
+![10](capturas/10.png)
 
 ## 📁 Estructura
 
