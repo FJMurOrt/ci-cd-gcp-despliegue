@@ -1,6 +1,6 @@
 # CI/CD para despliegue en GCP (Cloud Run, Artifact Registry, Terraform, FastAPI y GitHub Actions)
 
-Este proyecto es un pipeline completo de CI/CD que despliega automáticamente una aplicación en Google Cloud, desde el push a GitHub hasta que funciona en producción, con una URL pública real.
+Este proyecto es un pipeline completo de CI/CD que despliega automáticamente una aplicación en Google Cloud, desde el push a GitHub hasta que funciona en producción, con una URL pública.
 
 ## Lo importante: la API es solo la excusa
 
@@ -31,7 +31,16 @@ Todo lo que hay en la nube lo crea Terraform:
 
 ## 📸 Capturas
 
-
+![1](capturas/1.png)
+![2](capturas/2.png)
+![3](capturas/3.png)
+![4](capturas/4.png)
+![5](capturas/5.png)
+![6](capturas/6.png)
+![7](capturas/7.png)
+![8](capturas/8.png)
+![9](capturas/9.png)
+![10](capturas/10.png)
 
 ## 📁 Estructura
 
@@ -74,6 +83,6 @@ ci-cd-gcp-despliegue/
 - Artifact Registry
 - FastAPI (para el desarrollo de la api)
 
-## 💰 Sobre el coste
+## 💰 ¿Cuánto ha costado?
 
 Todo esto lo hice dentro del nivel gratuito de Google Cloud. Cloud Run no genera ningún coste, sólo si recibe mucho tráfico. Antes de empezar, puse una alerta de presupuesto de 1€ por si algo se salía de lo que tenía pensado. El gasto real y total fue de 0€.
