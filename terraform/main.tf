@@ -16,6 +16,14 @@ resource "google_artifact_registry_repository" "repositorio" {
   location      = var.region
   repository_id = "ci-cd-repo"
   format        = "DOCKER"
+  cleanup_policies {
+    id     = "borrar-imgs-antiguas"
+    action = "DELETE"
+    condition {
+      tag_state  = "ANY"
+      older_than = "86400s"
+    }
+  }
 }
 
 resource "google_cloud_run_v2_service" "servicio" {
